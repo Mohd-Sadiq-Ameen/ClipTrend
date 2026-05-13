@@ -10,7 +10,8 @@ search_bp = Blueprint('search', __name__)
 def ask():
     data = request.json
     domain = data.get('domain', 'general')
+    source = data.get('source', None)   # 'youtube', 'reddit', 'google'
     query = data.get('query', '')
     
-    top_idea = generate_top_idea(domain, query)
+    top_idea = generate_top_idea(domain, source, query)
     return jsonify(top_idea)
